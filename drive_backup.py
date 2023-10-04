@@ -19,12 +19,14 @@ FLAGS = flags.FLAGS
 flags.DEFINE_string("backup_directory", ".", "The directory to backup.")
 flags.DEFINE_string("zip_filename", "backup.zip", "The filename for the zipped backup.")
 
+logging.basicConfig(level=logging.INFO)
 
 def zipdir(path, ziph):
     """
     This function zips the content of the project directory. 
     It traverses the directory structure (os.walk) and adds files to the zip archive.
     """
+    logging.info("Zipping the files")
     for root, dirs, files in os.walk(path):
         for file in files:
             ziph.write(os.path.join(root, file), os.path.relpath(os.path.join(root, file), path))
