@@ -8,6 +8,7 @@ python data_to_xlsx_q1.py \
     --dataset_dir=amazon-dataset \
     --output_dir=processed-dataset
 
+
 # Run the second Python script
 python jsonl_gen_q2.py \
     --input_directory=amazon-dataset \
@@ -15,3 +16,8 @@ python jsonl_gen_q2.py \
     --languages=en-US,sw-KE,de-DE \
     --partitions=test,train,dev
 
+
+# Run the third Python script
+python en_to_xx_train_q3.py \
+    --processed_files_dir=processed-dataset \
+    --english_dataset=en_to_xx_translations.json \
