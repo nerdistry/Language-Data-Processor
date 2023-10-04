@@ -8,7 +8,6 @@ from googleapiclient.errors import HttpError
 from googleapiclient.http import MediaFileUpload
 from google.auth.transport.requests import Request
 import logging
-
 from absl import flags
 
 """
@@ -78,8 +77,6 @@ def upload_to_drive(file_path):
         logging.info(f"File {os.path.basename(file_path)} uploaded successfully with ID {file.get('id')}")
     except HttpError as error:
         logging.warning(f'Upload of {zip_filename} to google drive failed ')
-
-
 
 
 if __name__ == "__main__":
