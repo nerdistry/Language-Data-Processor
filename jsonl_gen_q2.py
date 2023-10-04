@@ -1,7 +1,6 @@
 """
-This module processes a given directory containing JSONL files of various language datasets (locales) from the Amazon dataset.
-Each JSONL file contains records with 'locale' and 'partition' fields which are filtered based on a specified set of languages and
-partitions, then saved into separate JSONL files within an output directory.
+This script filters records from input JSONL files for English (en), Swahili (sw), and German (de) based on their
+partitions, and outputs separate JSONL files for each language and the respective partition
 """
 import os
 import json
