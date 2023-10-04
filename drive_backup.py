@@ -11,19 +11,31 @@ import logging
 
 from absl import flags
 
+"""
+The 3 lines below are for defining command-line flags.
+They specify values for certain variables when they run the script.
+"""
 FLAGS = flags.FLAGS
 
 flags.DEFINE_string("backup_directory", ".", "The directory to backup.")
 flags.DEFINE_string("zip_filename", "backup.zip", "The filename for the zipped backup.")
 
+
 def zipdir(path, ziph):
-    # Zip the directory
+    """
+    This function zips the content of the project directory. 
+    It traverses the directory structure (os.walk) and adds files to the zip archive.
+    """
     for root, dirs, files in os.walk(path):
         for file in files:
             ziph.write(os.path.join(root, file), os.path.relpath(os.path.join(root, file), path))
 
-#User authentication using google API
+
 def authenticate():
+    """
+    This function is responsible for authenticating the user with the Google API, 
+    It checks for an existing token (from token.json). 
+    """
     creds = None
     token_path = "token.json"
     credentials_path = "client_secret.json"
@@ -44,9 +56,13 @@ def authenticate():
 
     return creds
 
-# zipping the project folder and and uploading the files to google drive
 
 def upload_to_drive(file_path):
+    """
+    This function is used to upload a specified file to Google Drive. 
+    It defines the metadata for the file and then uses Google Drive's API to upload it.
+    If the upload is successful, it logs the uploaded file's ID; if there's an error during upload, it logs a warning.
+    """
     creds = authenticate()
     drive_service = build("drive", "v3", credentials=creds)
 
@@ -64,8 +80,14 @@ def upload_to_drive(file_path):
         logging.warning(f'Upload of {zip_filename} to google drive failed ')
 
 
+
+
 if __name__ == "__main__":
-    directory_to_backup = '.'  # Current directory
+    """
+    This is the main entry point of the script when it's run as a standalone program.
+
+    """
+    directory_to_backup = '.'  # Current direcory
     zip_filename = 'group5cat.zip'
 
     with zipfile.ZipFile(zip_filename, 'w', zipfile.ZIP_DEFLATED) as zipf:
