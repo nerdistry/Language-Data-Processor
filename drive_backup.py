@@ -61,8 +61,8 @@ def upload_to_drive(file_path):
         file = drive_service.files().create(body=file_metadata, media_body=media, fields='id').execute()
         logging.info(f"File {os.path.basename(file_path)} uploaded successfully with ID {file.get('id')}")
     except HttpError as error:
-        print(f'Upload of {zip_filename} to google drive failed ')
-        
+        logging.warning(f'Upload of {zip_filename} to google drive failed ')
+
 
 if __name__ == "__main__":
     directory_to_backup = '.'  # Current directory
@@ -72,4 +72,5 @@ if __name__ == "__main__":
         zipdir(directory_to_backup, zipf)
 
     upload_to_drive(zip_filename)
-    print('Upload of group5cat.zip to google drive completed with success')
+    logging.info('Upload of group5cat.zip to google drive completed with success')
+ 
