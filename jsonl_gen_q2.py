@@ -1,7 +1,15 @@
+"""
+This module processes a given directory containing JSONL files of various language datasets (locales) from the Amazon dataset.
+Each JSONL file contains records with 'locale' and 'partition' fields which are filtered based on a specified set of languages and
+partitions, then saved into separate JSONL files within an output directory.
+"""
 import os
 import json
+import logging
 from absl import app
 from flags_config import FLAGS
+
+logging.basicConfig(level=logging.INFO)
 
 input_directory = 'amazon-dataset'
 output_directory = 'languages'
@@ -42,4 +50,4 @@ def main(argv):
         input_file = os.path.join(FLAGS.input_directory, f'{language}.jsonl')
         filter_and_save_records(input_file, language)
 
-    print('JSONL files have been generated and saved to', FLAGS.output_directory)
+    logging.info('JSONL files have been generated and saved to', FLAGS.output_directory)
