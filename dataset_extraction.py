@@ -3,7 +3,6 @@ import sys
 import time
 from absl import app, flags
 
-import pandas as pd
 import tarfile
 import os
 import logging
@@ -30,7 +29,6 @@ def extract_dataset(filename: str) -> list:
             time.sleep(0.15)
             sys.stdout.write('\b')
             if member.isfile() and member.name.endswith('.jsonl'):
-                # Modify member's name to just the filename to prevent directory structure replication
                 member.name = os.path.basename(member.name)
                 tar.extract(member, path=destination_dir)
                 extracted_files.append(member.name)
