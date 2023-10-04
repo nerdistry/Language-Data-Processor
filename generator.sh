@@ -16,5 +16,5 @@ python en_to_xx_train_q3.py \
     --english_dataset=en_to_xx_translations.json 
 
 
-#python drive_backup.py --zip_filename=group5cat.zip
+python drive_backup.py --zip_filename=group5cat.zip
 
