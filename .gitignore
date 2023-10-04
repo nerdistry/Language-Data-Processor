@@ -1,0 +1,4 @@
+.idea
+*.jsonl
+*.xlsx
+all_translations.json
