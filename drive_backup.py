@@ -63,3 +63,13 @@ def upload_to_drive(file_path):
     except HttpError as error:
         print(f'Upload of {zip_filename} to google drive failed ')
         
+
+if __name__ == "__main__":
+    directory_to_backup = '.'  # Current directory
+    zip_filename = 'group5cat.zip'
+
+    with zipfile.ZipFile(zip_filename, 'w', zipfile.ZIP_DEFLATED) as zipf:
+        zipdir(directory_to_backup, zipf)
+
+    upload_to_drive(zip_filename)
+    print('Upload of group5cat.zip to google drive completed with success')
