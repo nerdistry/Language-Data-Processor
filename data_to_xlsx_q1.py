@@ -19,7 +19,7 @@ partitioned_dir = './partitioned_dataset'
 
 
 def build_file_path(file_name: str) -> str:
-    '''The function takes a file name as input and returns the path by joining it with a directory (dataset_dir) using os.path.join().''''
+    '''The function takes a file name as input and returns the path by joining it with a directory (dataset_dir) using os.path.join().'''
     return os.path.join(dataset_dir, file_name)
 
 

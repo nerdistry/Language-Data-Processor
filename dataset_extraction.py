@@ -5,6 +5,9 @@ from absl import app, flags
 
 import tarfile
 import os
+import logging
+
+logging.basicConfig(level=logging.INFO)
 
 FLAGS = flags.FLAGS
 flags.DEFINE_string('tarfile_path', 'data/amazon_massive_dataset.tar.gz', 'Path to the tar.gz file that needs to be extracted.')
@@ -16,6 +19,7 @@ def extract_dataset(filename: str) -> list:
     extracted_files = []
     destination_dir = "amazon-dataset"
 
+    logging.info("Extracting Dataset")
     spinner = itertools.cycle(['-', '/', '|', '\\'])
 
     with tarfile.open(filename, "r:gz") as tar:
@@ -29,6 +33,7 @@ def extract_dataset(filename: str) -> list:
                 tar.extract(member, path=destination_dir)
                 extracted_files.append(member.name)
 
+    logging.info(f"Extraction to \"{destination_dir}\" Completed Successfully")
     return extracted_files
 
 extracted_files = extract_dataset("data/amazon_massive_dataset.tar.gz")
