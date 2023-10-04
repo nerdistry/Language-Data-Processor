@@ -1,3 +1,7 @@
+"""
+This script filters records from input JSONL files for English (en), Swahili (sw), and German (de) based on their
+partitions, and outputs separate JSONL files for each language and the respective partition
+"""
 import os
 import json
 from absl import app
