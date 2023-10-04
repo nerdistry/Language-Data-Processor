@@ -5,16 +5,12 @@
 
 import os
 import json
-import itertools
-import sys
-import time
 from openpyxl import load_workbook
 from zipfile import BadZipFile
 import logging
 from absl import app
 from flags_config import FLAGS
 
-spinner = itertools.cycle(['-', '/', '|', '\\'])
 logging.basicConfig(level=logging.INFO)
 
 def generate_translations_from_en_xx(processed_files_dir):
@@ -27,11 +23,6 @@ def generate_translations_from_en_xx(processed_files_dir):
     logging.info("Processing Files")
 
     for file in files:
-        sys.stdout.write(next(spinner))
-        sys.stdout.flush()
-        time.sleep(0.15)
-        sys.stdout.write('\b')
-
         if not file.endswith('.xlsx'):
             continue
 
