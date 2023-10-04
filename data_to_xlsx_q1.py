@@ -56,3 +56,17 @@ def generate_xlsx_file(file: str) -> None:
         os.makedirs(processed_files_dir)
 
     df.to_excel(f'{processed_files_dir}/en-{lang_code}.xlsx')
+
+
+def process_all_files(data_dir: str):
+    files = os.listdir(data_dir)
+    with concurrent.futures.ProcessPoolExecutor() as executor:
+        executor.map(generate_xlsx_file, files)
+
+
+def main(_):
+    process_all_files("amazon-dataset")
+
+
+if __name__ == '__main__':
+    app.run(main)
