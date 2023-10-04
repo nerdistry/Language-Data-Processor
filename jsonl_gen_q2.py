@@ -11,8 +11,6 @@ os.makedirs(output_directory, exist_ok=True)
 languages = set(['en-US', 'sw-KE', 'de-DE'])
 partitions = ['test', 'train', 'dev']
 
-
-
 def filter_and_save_records(input_file, language):
     # Open all the output files for the current language at once
     output_files = {
