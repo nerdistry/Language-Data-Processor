@@ -10,22 +10,14 @@ from flags_config import FLAGS
 
 logging.basicConfig(level=logging.INFO)
 
-input_directory = 'amazon-dataset'
-output_directory = 'languages'
-
-os.makedirs(output_directory, exist_ok=True)
-
-languages = {'en-US', 'sw-KE', 'de-DE'}
-partitions = ['test', 'train', 'dev']
-
 def filter_and_save_records(input_file, language):
     """
     Filters records from an input JSONL file by matching the 'locale' field with a specified language prefix
     and save them into separate JSONL files based on their 'partition' field.
     """
     output_files = {
-        partition: open(os.path.join(output_directory, f'{language}-{partition}.jsonl'), 'w', encoding='utf-8')
-        for partition in partitions}
+        partition: open(os.path.join(FLAGS.output_directory, f'{language}-{partition}.jsonl'), 'w', encoding='utf-8')
+        for partition in FLAGS.partitions}
 
     with open(input_file, 'r', encoding='utf-8') as file:
         for line in file:
@@ -37,16 +29,18 @@ def filter_and_save_records(input_file, language):
     for file in output_files.values():
         file.close()
 
-
 def main(argv):
     """
     Iterates through the provided languages, reads input JSONL files for each language,
     filters records using filter_and_save_records() function
     """
     os.makedirs(FLAGS.output_directory, exist_ok=True)
-
+    logging.info("Generating separate jsonl files...")
     for language in FLAGS.languages:
         input_file = os.path.join(FLAGS.input_directory, f'{language}.jsonl')
         filter_and_save_records(input_file, language)
 
-    logging.info('JSONL files have been generated and saved to', FLAGS.output_directory)
+    logging.info('JSONL files have been generated and saved to %s', FLAGS.output_directory)
+
+if __name__ == "__main__":
+    app.run(main)
