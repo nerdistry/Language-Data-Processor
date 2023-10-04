@@ -25,6 +25,17 @@ pip install pandas
  ```bash
 pip install openpyxl
 ```
+- FLAGS 
+```bash
+pip install absl-py
+```
+
+- pydrive 
+```bash
+pip install pydrive
+```
+
+
 - for Google Drive Api
 ```bash
 pip install google-auth google-auth-oauthlib google-auth-httplib2 google-api-python-client
@@ -32,8 +43,9 @@ pip install google-auth google-auth-oauthlib google-auth-httplib2 google-api-pyt
 
 
 ### Setting up the Development Environment(Optional)
-- Set up a virtual environment:
-- 1.Windows system:
+- Set up a virtual environment
+
+### 1.Windows system:
 - create the virtual environment
  
 ```bash
@@ -44,7 +56,7 @@ pip install google-auth google-auth-oauthlib google-auth-httplib2 google-api-pyt
       .\name_of_the_environment\Scripts\activate
  ```
    
-- 2.Linux Systems:
+### 2.Linux Systems:
 - create the virtual environment
 ```bash
             python3 -m venv name_of_the_environment
@@ -63,9 +75,39 @@ pip install google-auth google-auth-oauthlib google-auth-httplib2 google-api-pyt
 
 ### Directory Structure
 
-- `/dataset`: Contains the MASSIVE dataset file(s).
-- `/scripts`: Python scripts for processing.
-- `/output`: Output directory for resulting files.
+- `/amazon-dataset`: Contains the MASSIVE dataset zip file
+- `/data`: Contains the extracted MASSIVE dataset file(s).
+- `/processed-dataset`: Output directory for resulting en-xx Excel files.
+- `/languages`: Output directory for resulting language partition files.
+
+### Project Structure
+The final project structure should look like the following
+```bash
+project-root/
+|
+|-- amazon-dataset
+|        |--dataset.tar
+|        
+|-- data
+|        |--language.jsonl(Generated)
+|        
+|-- processed-dataset
+|        |--en-xx.xlsx(Generated)
+|        
+|-- languages
+|        |--language-partition.jsonl(Generated)  
+|            
+|-- all_translations.jsonl(Generated)
+|
+|-- generator.sh
+|-- question_files...
+
+```
+
+### Setting up the MASSIVE Dataset
+- Create the directory `/amazon-dataset` in the root folder
+- Download the MASSIVE dataset from: [MASSIVE Dataset by Amazon](https://drive.google.com/file/d/1I1b5YflUxIMIvqis0a7dCgLGzrkYXrLi/view?usp=drive_link)
+- Copy the downloaded tar file into `/amazon-dataset` directory
 
 ## File Generation
 
@@ -88,10 +130,10 @@ Ensure you have initialized a git repository, added your changes, committed them
 
 ## Usage
 
-1. Place your dataset in the `/dataset` folder.
-2. Run the Python scripts from the `/scripts` folder to perform dataset processing.
-3. Check the `/output` folder for the generated files.
-4. Use the provided utilities (or manually) to upload files to Google Drive and GitHub.
+1. Place your dataset in the `/amazon-dataset` folder.
+2. Run the `generator.sh` file to perform dataset processing.
+3. Check the `/data`, `/processed-dataset`, and `/languages` folders for the generated files.
+4. Check `all_translations.json` for the large JSON file containing the train sets
 
 ---
 
