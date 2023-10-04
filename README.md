@@ -130,9 +130,9 @@ Ensure you have initialized a git repository, added your changes, committed them
 
 ## Usage
 
-1. Place your dataset in the `/amazon-dataset` folder.
+1. Place your dataset in the `/data` folder.
 2. Run the `generator.sh` file to perform dataset processing.
-3. Check the `/data`, `/processed-dataset`, and `/languages` folders for the generated files.
+3. Check the `/amazon-dataset`, `/processed-dataset`, and `/languages` folders for the generated files.
 4. Check `all_translations.json` for the large JSON file containing the train sets
 
 ---
