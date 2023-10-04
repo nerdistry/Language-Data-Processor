@@ -43,7 +43,6 @@ def generate_translations_from_en_xx(processed_files_dir):
                 if row[partition_col_idx] == "train":
                     results.append({"id": row[id_col_idx], "utterance": row[utterance_col_idx]})
         except BadZipFile:
-            logging.warning(f"Error: The file {file_path} appears to be corrupted or improperly formatted.")
             continue
 
     return results
