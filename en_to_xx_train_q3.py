@@ -7,8 +7,11 @@ import os
 import json
 from openpyxl import load_workbook
 from zipfile import BadZipFile
+import logging
 from absl import app
 from flags_config import FLAGS
+
+logging.basicConfig(level=logging.INFO)
 
 def generate_translations_from_en_xx(processed_files_dir):
     """
@@ -17,12 +20,13 @@ def generate_translations_from_en_xx(processed_files_dir):
     files = os.listdir(processed_files_dir)
     results = []
 
+    logging.info("Processing Files")
+
     for file in files:
         if not file.endswith('.xlsx'):
             continue
 
         file_path = os.path.join(processed_files_dir, file)
-        print("Processing:", file_path)
 
         try:
             wb = load_workbook(file_path, read_only=True)
@@ -39,7 +43,7 @@ def generate_translations_from_en_xx(processed_files_dir):
                 if row[partition_col_idx] == "train":
                     results.append({"id": row[id_col_idx], "utterance": row[utterance_col_idx]})
         except BadZipFile:
-            print(f"Error: The file {file_path} appears to be corrupted or improperly formatted.")
+            logging.warning(f"Error: The file {file_path} appears to be corrupted or improperly formatted.")
             continue
 
     return results
@@ -52,4 +56,4 @@ translations = generate_translations_from_en_xx(processed_files_dir)
 with open('all_translations.json', 'w', encoding='utf-8') as f:
     json.dump(translations, f, ensure_ascii=False, indent=4)
 
-print('Translations have been saved to all_translations.json')
+logging.info('Translations have been saved to all_translations.json')
