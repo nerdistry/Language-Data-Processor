@@ -1,0 +1,14 @@
+Imports:
+pip install absl-py
+pip install pandas
+pip install itertools
+pip install sys
+pip install time
+pip install tarfile
+
+Flags:
+python data_to_xlsx(1).py --dataset_dir=amazon-dataset --english_dataset=en_to_xx_translations.json --output_dir=processed-dataset
+python jsonl_gen(2).py --input_directory=amazon-dataset --output_directory=languages --languages=en-US,sw-KE,de-DE --partitions=test,train,dev
+python en_to_xx_train(3).py --processed_files_dir=processed-dataset
+
+.zip,.jsonl
