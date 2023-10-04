@@ -8,13 +8,15 @@ output_directory = 'languages'
 
 os.makedirs(output_directory, exist_ok=True)
 
-languages = set(['en-US', 'sw-KE', 'de-DE'])
+languages = {'en-US', 'sw-KE', 'de-DE'}
 partitions = ['test', 'train', 'dev']
 
 
-
 def filter_and_save_records(input_file, language):
-    # Open all the output files for the current language at once
+    """
+    Filters records from an input JSONL file by matching the 'locale' field with a specified language prefix
+    and save them into separate JSONL files based on their 'partition' field.
+    """
     output_files = {
         partition: open(os.path.join(output_directory, f'{language}-{partition}.jsonl'), 'w', encoding='utf-8')
         for partition in partitions}
@@ -26,14 +28,9 @@ def filter_and_save_records(input_file, language):
                 json.dump(record, output_files[record['partition']])
                 output_files[record['partition']].write('\n')
 
-    # Close all the output files for the current language
     for file in output_files.values():
         file.close()
 
-
-for language in languages:
-    input_file = os.path.join(input_directory, f'{language}.jsonl')
-    filter_and_save_records(input_file, language)
 
 def main(argv):
     os.makedirs(FLAGS.output_directory, exist_ok=True)
@@ -43,4 +40,3 @@ def main(argv):
         filter_and_save_records(input_file, language)
 
     print('JSONL files have been generated and saved to', FLAGS.output_directory)
-
