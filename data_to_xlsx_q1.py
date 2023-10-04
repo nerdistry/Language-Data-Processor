@@ -9,7 +9,7 @@ import os
 from absl import app
 from flags_config import FLAGS
 
-# Constants
+
 dataset_dir = './amazon-dataset'
 processed_files_dir = './processed-dataset'
 english_dataset = 'en-US.jsonl'
@@ -17,8 +17,6 @@ german_dataset = 'de-DE.jsonl'
 swahili_dataset = 'sw-KE.jsonl'
 partitioned_dir = './partitioned_dataset'
 
-
-# Functions
 
 def build_file_path(file_name: str) -> str:
     '''The function takes a file name as input and returns the path by joining it with a directory (dataset_dir) using os.path.join().''''
