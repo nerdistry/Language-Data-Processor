@@ -33,6 +33,10 @@ def filter_and_save_records(input_file, language):
 
 
 def main(argv):
+    """
+    Iterates through the provided languages, reads input JSONL files for each language,
+    filters records using filter_and_save_records() function
+    """
     os.makedirs(FLAGS.output_directory, exist_ok=True)
 
     for language in FLAGS.languages:
