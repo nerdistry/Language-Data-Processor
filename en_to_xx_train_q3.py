@@ -1,3 +1,8 @@
+"""
+    This file generates a list of translations from en-xx based on the 'train' partition of each XLSX file in the specified directory.
+    For every row in the 'train' partition, it extracts the 'id' and 'utterance' columns and appends them to a results list.
+"""
+
 import os
 import json
 from openpyxl import load_workbook

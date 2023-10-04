@@ -1,10 +1,8 @@
 Imports:
 pip install absl-py
 pip install pandas
-pip install itertools
-pip install sys
-pip install time
-pip install tarfile
+pip install openpyxl
+pip install google-auth google-auth-oauthlib google-auth-httplib2 google-api-python-client
 
 Flags:
 python data_to_xlsx(1).py --dataset_dir=amazon-dataset --english_dataset=en_to_xx_translations.json --output_dir=processed-dataset
