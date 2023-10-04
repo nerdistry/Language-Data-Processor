@@ -80,6 +80,30 @@ pip install google-auth google-auth-oauthlib google-auth-httplib2 google-api-pyt
 - `/processed-dataset`: Output directory for resulting en-xx Excel files.
 - `/languages`: Output directory for resulting language partition files.
 
+### Project Structure
+The final project structure should look like the following
+```bash
+project-root/
+|
+|-- amazon-dataset
+|        |--dataset.tar
+|        
+|-- data
+|        |--language.jsonl(Generated)
+|        
+|-- processed-dataset
+|        |--en-xx.xlsx(Generated)
+|        
+|-- languages
+|        |--language-partition.jsonl(Generated)  
+|            
+|-- all_translations.jsonl(Generated)
+|
+|-- generator.sh
+|-- question_files...
+
+```
+
 ### Setting up the MASSIVE Dataset
 - Create the directory `/amazon-dataset` in the root folder
 - Download the MASSIVE dataset from: [MASSIVE Dataset by Amazon](https://drive.google.com/file/d/1I1b5YflUxIMIvqis0a7dCgLGzrkYXrLi/view?usp=drive_link)
