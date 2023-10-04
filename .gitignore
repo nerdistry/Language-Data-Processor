@@ -5,4 +5,5 @@
 *.xlsx
 all_translations.json
 data
+requirements.txt
 
