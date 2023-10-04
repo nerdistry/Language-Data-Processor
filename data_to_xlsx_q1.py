@@ -76,10 +76,10 @@ def generate_xlsx_file(file: str) -> None:
 def process_all_files(data_dir: str):
     '''The function processes all files in a directory concurrently, using multiprocessing, by generating Excel files for each JSON Lines file in the directory.'''
     files = os.listdir(data_dir)
-    logging.info("Processing All Files")
+    logging.info("Running data_to_xlsx_q1.py script...")
     with concurrent.futures.ProcessPoolExecutor() as executor:
         executor.map(generate_xlsx_file, files)
-    logging.info("Finished Processing All Files")
+    logging.info("Conversion to .xlsx complete!")
 
 
 def main(_):
