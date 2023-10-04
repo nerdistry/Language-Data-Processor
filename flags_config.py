@@ -9,9 +9,9 @@ flags.DEFINE_string('output_dir', './processed-dataset', 'Directory to save the 
 
 # Updated flags with default values
 flags.DEFINE_string("input_directory", './amazon-dataset', "Path to the input directory containing JSONL files")
-flags.DEFINE_string("output_directory", './partitioned-dataset', "Path to the directory where partitioned JSONL files will be saved")
-flags.DEFINE_list("languages", ["en", "de"], "List of languages to be processed")
-flags.DEFINE_list("partitions", ["train", "test"], "List of partitions to be generated")
+flags.DEFINE_string("output_directory", './languages', "Path to the directory where split JSONL files will be saved")
+flags.DEFINE_list("languages", ['en-US', 'sw-KE', 'de-DE'], "List of languages to be processed")
+flags.DEFINE_list("partitions", ["train", "test", "dev"], "List of partitions to be generated")
 
 flags.DEFINE_string(
     'processed_files_dir',
