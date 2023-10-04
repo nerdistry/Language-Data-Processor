@@ -4,8 +4,11 @@ partitions, and outputs separate JSONL files for each language and the respectiv
 """
 import os
 import json
+import logging
 from absl import app
 from flags_config import FLAGS
+
+logging.basicConfig(level=logging.INFO)
 
 input_directory = 'amazon-dataset'
 output_directory = 'languages'
@@ -46,4 +49,4 @@ def main(argv):
         input_file = os.path.join(FLAGS.input_directory, f'{language}.jsonl')
         filter_and_save_records(input_file, language)
 
-    print('JSONL files have been generated and saved to', FLAGS.output_directory)
+    logging.info('JSONL files have been generated and saved to', FLAGS.output_directory)

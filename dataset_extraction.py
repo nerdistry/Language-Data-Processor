@@ -24,10 +24,6 @@ def extract_dataset(filename: str) -> list:
 
     with tarfile.open(filename, "r:gz") as tar:
         for member in tar.getmembers():
-            sys.stdout.write(next(spinner))
-            sys.stdout.flush()
-            time.sleep(0.15)
-            sys.stdout.write('\b')
             if member.isfile() and member.name.endswith('.jsonl'):
                 member.name = os.path.basename(member.name)
                 tar.extract(member, path=destination_dir)
