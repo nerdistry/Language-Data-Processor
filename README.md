@@ -63,9 +63,15 @@ pip install google-auth google-auth-oauthlib google-auth-httplib2 google-api-pyt
 
 ### Directory Structure
 
-- `/dataset`: Contains the MASSIVE dataset file(s).
-- `/scripts`: Python scripts for processing.
-- `/output`: Output directory for resulting files.
+- `/amazon-dataset`: Contains the MASSIVE dataset zip file
+- `/data`: Contains the extracted MASSIVE dataset file(s).
+- `/processed-dataset`: Output directory for resulting en-xx Excel files.
+- `/languages`: Output directory for resulting language partition files.
+
+### Setting up the MASSIVE Dataset
+- Create the directory `/amazon-dataset` in the root folder
+- Download the MASSIVE dataset from: [MASSIVE Dataset by Amazon](https://drive.google.com/file/d/1I1b5YflUxIMIvqis0a7dCgLGzrkYXrLi/view?usp=drive_link)
+- Copy the downloaded tar file into `/amazon-dataset` directory
 
 ## File Generation
 
