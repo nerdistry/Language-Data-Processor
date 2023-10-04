@@ -43,3 +43,23 @@ def authenticate():
             token.write(creds.to_json())
 
     return creds
+
+# zipping the project folder and and uploading the files to google drive
+
+def upload_to_drive(file_path):
+    creds = authenticate()
+    drive_service = build("drive", "v3", credentials=creds)
+
+    file_metadata = {
+        'name': os.path.basename(file_path),
+        'mimeType': 'application/octet-stream'
+    }
+
+    media = MediaFileUpload(file_path, mimetype='application/octet-stream', resumable=True)
+
+    try:
+        file = drive_service.files().create(body=file_metadata, media_body=media, fields='id').execute()
+        logging.info(f"File {os.path.basename(file_path)} uploaded successfully with ID {file.get('id')}")
+    except HttpError as error:
+        print(f'Upload of {zip_filename} to google drive failed ')
+        
