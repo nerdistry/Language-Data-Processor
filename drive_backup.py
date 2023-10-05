@@ -19,15 +19,21 @@ FLAGS = flags.FLAGS
 flags.DEFINE_string("backup_directory", ".", "The directory to backup.")
 flags.DEFINE_string("zip_filename", "backup.zip", "The filename for the zipped backup.")
 
+logging.basicConfig(level=logging.INFO)
 
 def zipdir(path, ziph):
     """
     This function zips the content of the project directory. 
     It traverses the directory structure (os.walk) and adds files to the zip archive.
     """
+    logging.info("Zipping the files")
     for root, dirs, files in os.walk(path):
         for file in files:
+            if file == zip_filename:  # Skip zipping the backup zip file itself.
+                continue
             ziph.write(os.path.join(root, file), os.path.relpath(os.path.join(root, file), path))
+
+    logging.info("File zipped to group5cat.zip")
 
 
 def authenticate():
@@ -35,10 +41,12 @@ def authenticate():
     This function is responsible for authenticating the user with the Google API, 
     It checks for an existing token (from token.json). 
     """
+    logging.info("Authenticating...")
     creds = None
     token_path = "token.json"
     credentials_path = "client_secret.json"
 
+    logging.info("Validating Token")
     if os.path.exists(token_path):
         creds = Credentials.from_authorized_user_file(token_path)
 
@@ -46,23 +54,25 @@ def authenticate():
         if creds and creds.expired and creds.refresh_token:
             creds.refresh(Request())
         else:
-            flow = InstalledAppFlow.from_client_secrets_file(credentials_path,
-                                                             ["https://www.googleapis.com/auth/drive.file"])
+            flow = InstalledAppFlow.from_client_secrets_file(credentials_path,["https://www.googleapis.com/auth/drive.file"])
             creds = flow.run_local_server(port=0)
 
         with open(token_path, "w") as token:
             token.write(creds.to_json())
 
+    logging.info("Authentication Complete")
     return creds
 
 
 def upload_to_drive(file_path):
     """
-    This function is used to upload a specified file to Google Drive. 
+    This function is used to upload a specified file to G   oogle Drive.
     It defines the metadata for the file and then uses Google Drive's API to upload it.
     If the upload is successful, it logs the uploaded file's ID; if there's an error during upload, it logs a warning.
     """
+    logging.info("Uploading to Google Drive")
     creds = authenticate()
+    logging.info("Continuing Upload to Google Drive")
     drive_service = build("drive", "v3", credentials=creds)
 
     file_metadata = {
@@ -87,7 +97,7 @@ if __name__ == "__main__":
     directory_to_backup = '.'  # Current direcory
     zip_filename = 'group5cat.zip'
 
-    with zipfile.ZipFile(zip_filename, 'w', zipfile.ZIP_DEFLATED) as zipf:
+    with zipfile.ZipFile(zip_filename, 'w', zipfile.ZIP_DEFLATED, allowZip64=True) as zipf:
         zipdir(directory_to_backup, zipf)
 
     upload_to_drive(zip_filename)

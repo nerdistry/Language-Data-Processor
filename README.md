@@ -49,34 +49,34 @@ pip install google-auth google-auth-oauthlib google-auth-httplib2 google-api-pyt
 - create the virtual environment
  
 ```bash
-         python -m venv name_of_the_environment
+  python -m venv name_of_the_environment
 ```
 - Activate
 ```bash
-      .\name_of_the_environment\Scripts\activate
+  .\name_of_the_environment\Scripts\activate
  ```
    
 ### 2.Linux Systems:
 - create the virtual environment
 ```bash
-            python3 -m venv name_of_the_environment
+  python3 -m venv name_of_the_environment
 ```
      
 - Activate:
 ```bash
-      source name_of_the_environment/bin/activate
+  source name_of_the_environment/bin/activate
 ```
 - To Deactivate the environment in both Windows and linux Systems:
 ```bash
-      deactivate
+  deactivate
 ```
 
 
 
 ### Directory Structure
 
-- `/amazon-dataset`: Contains the MASSIVE dataset zip file
-- `/data`: Contains the extracted MASSIVE dataset file(s).
+- `/data`: Contains the MASSIVE dataset zip file
+- `/amazon-dataset`: Contains the extracted MASSIVE dataset file(s).
 - `/processed-dataset`: Output directory for resulting en-xx Excel files.
 - `/languages`: Output directory for resulting language partition files.
 
@@ -85,10 +85,10 @@ The final project structure should look like the following
 ```bash
 project-root/
 |
-|-- amazon-dataset
-|        |--dataset.tar
-|        
 |-- data
+|        |--amazon-massive-dataset.tar
+|        
+|-- amazon-dataset
 |        |--language.jsonl(Generated)
 |        
 |-- processed-dataset
@@ -105,9 +105,9 @@ project-root/
 ```
 
 ### Setting up the MASSIVE Dataset
-- Create the directory `/amazon-dataset` in the root folder
+- Create the directory `/data` in the root folder
 - Download the MASSIVE dataset from: [MASSIVE Dataset by Amazon](https://drive.google.com/file/d/1I1b5YflUxIMIvqis0a7dCgLGzrkYXrLi/view?usp=drive_link)
-- Copy the downloaded tar file into `/amazon-dataset` directory
+- Copy the downloaded tar file into `/data` directory
 
 ## File Generation
 
@@ -130,9 +130,9 @@ Ensure you have initialized a git repository, added your changes, committed them
 
 ## Usage
 
-1. Place your dataset in the `/amazon-dataset` folder.
+1. Place your dataset in the `/data` folder.
 2. Run the `generator.sh` file to perform dataset processing.
-3. Check the `/data`, `/processed-dataset`, and `/languages` folders for the generated files.
+3. Check the `/amazon-dataset`, `/processed-dataset`, and `/languages` folders for the generated files.
 4. Check `all_translations.json` for the large JSON file containing the train sets
 
 ---
