@@ -16,7 +16,8 @@ def filter_and_save_records(input_file, language):
     and save them into separate JSONL files based on their 'partition' field.
     """
     output_files = {
-        partition: open(os.path.join(FLAGS.output_directory, f'{language}-{partition}.jsonl'), 'w', encoding='utf-8')
+        partition: open(os.path.join(FLAGS.output_directory,
+                                     f'{language}-{partition}.jsonl'), 'w', encoding='utf-8')
         for partition in FLAGS.partitions}
 
     with open(input_file, 'r', encoding='utf-8') as file:
@@ -31,7 +32,8 @@ def filter_and_save_records(input_file, language):
 
 def main(argv):
     """
-    Iterates through the provided languages, reads input JSONL files for each language,
+    Iterates through the provided languages, reads input JSONL
+    files for each language,
     filters records using filter_and_save_records() function
     """
     os.makedirs(FLAGS.output_directory, exist_ok=True)
@@ -40,7 +42,8 @@ def main(argv):
         input_file = os.path.join(FLAGS.input_directory, f'{language}.jsonl')
         filter_and_save_records(input_file, language)
 
-    logging.info('JSONL files have been generated and saved to %s', FLAGS.output_directory)
+    logging.info('JSONL files have been generated and saved to %s',
+                 FLAGS.output_directory)
 
 if __name__ == "__main__":
     app.run(main)

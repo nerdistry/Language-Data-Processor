@@ -1,8 +1,8 @@
+"""
+This module provides functionality to extract specific `.jsonl` files from a given tarball.
+"""
 import itertools
-import sys
-import time
-from absl import app, flags
-
+from absl import flags
 import tarfile
 import os
 import logging
@@ -10,12 +10,11 @@ import logging
 logging.basicConfig(level=logging.INFO)
 
 FLAGS = flags.FLAGS
-flags.DEFINE_string('tarfile_path', 'data/amazon_massive_dataset.tar.gz', 'Path to the tar.gz file that needs to be extracted.')
+flags.DEFINE_string('tarfile_path',
+                    'data/amazon_massive_dataset.tar.gz',
+                    'Path to the tar.gz file that needs to be extracted.')
 def extract_dataset(filename: str) -> list:
-    """
-    Extracts the dataset and returns the list of extracted jsonl files.
-    """
-
+    """Extracts the dataset and returns the list of extracted jsonl files. """
     extracted_files = []
     destination_dir = "amazon-dataset"
 
