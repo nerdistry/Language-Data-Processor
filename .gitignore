@@ -9,3 +9,4 @@ requirements.txt
 *.zip
 group5cat.zip
 __pycache__/
+.pyc
