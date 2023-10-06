@@ -34,6 +34,7 @@ def zipdir(path, ziph):
                        os.path.relpath(os.path.join(root, file), path))
 
     logging.info("File zipped to group5cat.zip")
+    logging.info("File zipped to group5cat.zip")
 
 
 def authenticate():
@@ -53,8 +54,7 @@ def authenticate():
         if creds and creds.expired and creds.refresh_token:
             creds.refresh(Request())
         else:
-            flow = InstalledAppFlow.from_client_secrets_file(credentials_path,
-                                                             ["https://www.googleapis.com/auth/drive.file"])
+            flow = InstalledAppFlow.from_client_secrets_file(credentials_path,["https://www.googleapis.com/auth/drive.file"])
             creds = flow.run_local_server(port=0)
 
         with open(token_path, "w") as token:
