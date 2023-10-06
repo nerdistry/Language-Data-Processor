@@ -106,7 +106,7 @@ project-root/
 
 ### Setting up the MASSIVE Dataset
 - Create the directory `/data` in the root folder
-- Download the MASSIVE dataset from: [MASSIVE Dataset by Amazon](https://drive.google.com/file/d/1I1b5YflUxIMIvqis0a7dCgLGzrkYXrLi/view?usp=drive_link)
+- Download the MASSIVE dataset from [here.](https://drive.google.com/file/d/1I1b5YflUxIMIvqis0a7dCgLGzrkYXrLi/view?usp=drive_link)
 - Copy the downloaded tar file into `/data` directory
 
 ## File Generation
