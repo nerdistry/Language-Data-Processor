@@ -6,5 +6,6 @@
 all_translations.json
 data
 requirements.txt
+*.zip
 group5cat.zip
 __pycache__/
